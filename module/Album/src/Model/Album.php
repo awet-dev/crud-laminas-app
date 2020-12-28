@@ -11,7 +11,7 @@ use Laminas\InputFilter\InputFilterAwareInterface;
 use Laminas\InputFilter\InputFilterInterface;
 use Laminas\Validator\StringLength;
 
-class Album implements InputFilterAwareInterface
+class Album extends \ArrayObject implements InputFilterAwareInterface
 {
     public $id;
     public $artist;
@@ -20,14 +20,15 @@ class Album implements InputFilterAwareInterface
     // Add this property:
     private $inputFilter;
 
-    public function exchangeArray(array $data)
+
+    public function exchangeArray($data): void
     {
         $this->id     = !empty($data['id']) ? $data['id'] : null;
         $this->artist = !empty($data['artist']) ? $data['artist'] : null;
         $this->title  = !empty($data['title']) ? $data['title'] : null;
     }
 
-    public function getArrayCopy()
+    public function getArrayCopy(): array
     {
         return [
             'id'     => $this->id,
