@@ -13,9 +13,8 @@ class AlbumForm extends Form
 
         $this->add([
             'name' => 'id',
-            'type' => 'hidden'
+            'type' => 'hidden',
         ]);
-
         $this->add([
             'name' => 'title',
             'type' => 'text',

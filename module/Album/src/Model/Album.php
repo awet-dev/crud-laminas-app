@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Album\Model;
 
 use DomainException;
@@ -17,6 +16,8 @@ class Album implements InputFilterAwareInterface
     public $id;
     public $artist;
     public $title;
+
+    // Add this property:
     private $inputFilter;
 
     public function exchangeArray(array $data)
@@ -26,7 +27,7 @@ class Album implements InputFilterAwareInterface
         $this->title  = !empty($data['title']) ? $data['title'] : null;
     }
 
-    public function getArrayCopy(): array
+    public function getArrayCopy()
     {
         return [
             'id'     => $this->id,
@@ -34,6 +35,8 @@ class Album implements InputFilterAwareInterface
             'title'  => $this->title,
         ];
     }
+
+    /* Add the following methods: */
 
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
