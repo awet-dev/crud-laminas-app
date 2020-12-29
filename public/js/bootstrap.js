@@ -3777,10 +3777,10 @@
   var Selector$8 = {
     DATA_SPY: '[data-spy="scroll"]',
     ACTIVE: '.active',
-    NAV_LIST_GROUP: '.nav, .list-group',
+    NAV_LIST_GROUP: '.nav, .blog-group',
     NAV_LINKS: '.nav-link',
     NAV_ITEMS: '.nav-item',
-    LIST_ITEMS: '.list-group-item',
+    LIST_ITEMS: '.blog-group-item',
     DROPDOWN: '.dropdown',
     DROPDOWN_ITEMS: '.dropdown-item',
     DROPDOWN_TOGGLE: '.dropdown-toggle'
@@ -4076,10 +4076,10 @@
   };
   var Selector$9 = {
     DROPDOWN: '.dropdown',
-    NAV_LIST_GROUP: '.nav, .list-group',
+    NAV_LIST_GROUP: '.nav, .blog-group',
     ACTIVE: '.active',
     ACTIVE_UL: '> li > .active',
-    DATA_TOGGLE: '[data-toggle="tab"], [data-toggle="pill"], [data-toggle="list"]',
+    DATA_TOGGLE: '[data-toggle="tab"], [data-toggle="pill"], [data-toggle="blog"]',
     DROPDOWN_TOGGLE: '.dropdown-toggle',
     DROPDOWN_ACTIVE_CHILD: '> .dropdown-menu .active'
   };

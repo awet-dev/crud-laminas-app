@@ -7,7 +7,7 @@
  * @see https://docs.laminas.dev/tutorials/advanced-config/#environment-specific-application-configuration
  */
 return [
-    // Retrieve list of modules used in this application.
+    // Retrieve blog of modules used in this application.
     'modules' => require __DIR__ . '/modules.config.php',
 
     // These are various options for the listeners attached to the ModuleManager

@@ -99,7 +99,7 @@ class AlbumController extends AbstractActionController
 
         $this->table->saveAlbum($album);
 
-        // Redirect to album list
+        // Redirect to album blog
         return $this->redirect()->toRoute('album', ['action' => 'index']);
     }
 
@@ -119,7 +119,7 @@ class AlbumController extends AbstractActionController
                 $this->table->deleteAlbum($id);
             }
 
-            // Redirect to list of albums
+            // Redirect to blog of albums
             return $this->redirect()->toRoute('album');
         }
 

@@ -1,0 +1,76 @@
+<?php
+
+
+namespace Blog\Model;
+
+
+use InvalidArgumentException;
+use Laminas\Db\Adapter\AdapterInterface;
+use Laminas\Db\Adapter\Driver\ResultInterface;
+use Laminas\Db\Sql\Sql;
+use Laminas\Hydrator\HydratorInterface;
+use RuntimeException;
+use Laminas\Hydrator\ReflectionHydrator;
+use Laminas\Db\ResultSet\HydratingResultSet;
+
+class LaminasDbSqlRepository implements PostRepositoryInterface
+{
+    /**
+     * @var AdapterInterface
+     */
+    private $db;
+
+    /**
+     * @var HydratorInterface
+     */
+    private $hydrator;
+
+    /**
+     * @var Post
+     */
+    private $postPrototype;
+
+    /**
+     * LaminasDbSqlRepository constructor.
+     * @param AdapterInterface $db
+     * @param HydratorInterface $hydrator
+     * @param Post $postPrototype
+     */
+    public function __construct(AdapterInterface $db, HydratorInterface $hydrator, Post $postPrototype)
+    {
+        $this->db = $db;
+        $this->hydrator = $hydrator;
+        $this->postPrototype = $postPrototype;
+    }
+
+
+    /**
+     * @return Post[]
+     * {@inheritDoc}
+     */
+    public function findAllPosts()
+    {
+        $sql       = new Sql($this->db);
+        $select    = $sql->select('posts');
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $result    = $statement->execute();
+
+        if (! $result instanceof ResultInterface || ! $result->isQueryResult()) {
+            return [];
+        }
+
+        $resultSet = new HydratingResultSet($this->hydrator, $this->postPrototype);
+        $resultSet->initialize($result);
+        return $resultSet;
+    }
+
+    /**
+     * {@inheritDoc}
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
+     */
+    public function findPost($id)
+    {
+
+    }
+}

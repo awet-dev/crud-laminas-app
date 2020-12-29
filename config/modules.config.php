@@ -24,5 +24,6 @@ return [
     'Laminas\Router',
     'Laminas\Validator',
     'Application',
-    'Album'
+    'Album',
+    'Blog'
 ];

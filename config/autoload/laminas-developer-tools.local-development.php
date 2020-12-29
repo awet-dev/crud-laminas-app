@@ -66,7 +66,7 @@ return [
             'matcher' => [],
 
             /**
-             * Contains a list with all collector the profiler should run. Laminas\DeveloperTools ships with
+             * Contains a blog with all collector the profiler should run. Laminas\DeveloperTools ships with
              * 'db' (Laminas\Db), 'time', 'event', 'memory', 'exception', 'request' and 'mail' (Laminas\Mail).
              * If you wish to disable a default collector, simply set the value to null or false.
              *
@@ -87,7 +87,7 @@ return [
             'enabled' => true,
 
             /**
-             * Contains a list with all event-level collectors that should run. Laminas\DeveloperTools ships with 'time'
+             * Contains a blog with all event-level collectors that should run. Laminas\DeveloperTools ships with 'time'
              * and 'memory'. If you wish to disable a default collector, simply set the value to null or false.
              *
              * Example: 'collectors' => ['memory' => null]
@@ -143,7 +143,7 @@ return [
             'version_check' => false,
 
             /**
-             * Contains a list with all collector toolbar templates. The name of the array key must be same as the name
+             * Contains a blog with all collector toolbar templates. The name of the array key must be same as the name
              * of the collector.
              *
              * Example: 'profiler' => [
