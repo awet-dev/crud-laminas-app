@@ -45,7 +45,7 @@ class LaminasDbSqlRepository implements PostRepositoryInterface
 
 
     /**
-     * @return Post[]
+     * @return HydratingResultSet
      * {@inheritDoc}
      */
     public function findAllPosts()
@@ -71,6 +71,31 @@ class LaminasDbSqlRepository implements PostRepositoryInterface
      */
     public function findPost($id)
     {
+        $sql = new Sql($this->db);
+        $select = $sql->select('posts');
+        $select->where(['id = ?' => $id]);
 
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $result = $statement->execute();
+
+        if (! $result instanceof ResultInterface || ! $result->isQueryResult()) {
+            throw new RuntimeException(sprintf(
+                'Failed retrieving blog post with identifier "%s"; unknown database error.',
+                $id
+            ));
+        }
+
+        $resultSet = new HydratingResultSet($this->hydrator, $this->postPrototype);
+        $resultSet->initialize($result);
+        $post = $resultSet->current();
+
+        if (!$post) {
+            throw new InvalidArgumentException(sprintf(
+                'Blog post with identifier "%s" not found.',
+                $id
+            ));
+        }
+
+        return $post;
     }
 }

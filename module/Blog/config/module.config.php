@@ -1,8 +1,6 @@
 <?php
 namespace Blog;
 
-use Blog\Model\PostRepository;
-use Blog\Model\PostRepositoryInterface;
 use Laminas\Router\Http\Literal;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
