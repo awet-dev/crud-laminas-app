@@ -2,6 +2,7 @@
 namespace Blog;
 
 use Laminas\Router\Http\Literal;
+use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
@@ -15,10 +16,26 @@ return [
                         'controller' => Controller\ListController::class,
                         'action' => 'index'
                     ]
-                ]
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
+                    'detail' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route'    => '/:id',
+                            'defaults' => [
+                                'action' => 'detail',
+                            ],
+                            'constraints' => [
+                                'id' => '[1-9]\d*',
+                            ],
+                        ],
+                    ],
+                ],
             ]
         ]
     ],
+
 
     'service_manager' => [
       'aliases' => [
@@ -29,11 +46,15 @@ return [
             Model\LaminasDbSqlRepository::class => Factory\LaminasDbSqlRepositoryFactory::class
         ]
     ],
+
+
     'controllers' => [
         'factories' => [
             Controller\ListController::class => Factory\ListControllerFactory::class,
         ]
     ],
+
+
 
     'view_manager' => [
         'template_path_stack' => [
