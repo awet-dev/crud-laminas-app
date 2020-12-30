@@ -16,7 +16,7 @@ class Post
      * @param $text
      * @param $title
      */
-    public function __construct($id, $text, $title)
+    public function __construct($id= 1, $text, $title)
     {
         $this->id = $id;
         $this->text = $text;
