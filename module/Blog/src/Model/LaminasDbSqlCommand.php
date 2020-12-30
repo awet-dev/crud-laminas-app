@@ -6,6 +6,7 @@ namespace Blog\Model;
 
 use Laminas\Db\Adapter\AdapterInterface;
 use Laminas\Db\Adapter\Driver\ResultInterface;
+use Laminas\Db\Sql\Delete;
 use Laminas\Db\Sql\Insert;
 use Laminas\Db\Sql\Sql;
 use Laminas\Db\Sql\Update;
@@ -76,6 +77,21 @@ class LaminasDbSqlCommand implements PostCommandInterface
 
     public function deletePost(Post $post)
     {
-        // TODO: Implement deletePost() method.
+        if (! $post->getId()) {
+            throw new RuntimeException('Cannot update post; missing identifier');
+        }
+
+        $delete = new Delete('posts');
+        $delete->where(['id = ?' => $post->getId()]);
+
+        $sql = new Sql($this->db);
+        $statement = $sql->prepareStatementForSqlObject($delete);
+        $result = $statement->execute();
+
+        if (! $result instanceof ResultInterface) {
+            return false;
+        }
+
+        return true;
     }
 }
